@@ -1,0 +1,136 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home (SwapPI)
+  # Location required to calculate the time the sun rises and sets
+  latitude: 37.3239
+  longitude: -121.9144
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 34
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Los_Angeles
+
+# Show links to resources in log and frontend
+introduction:
+
+
+#mqtt data
+mqtt:
+ broker: 192.168.0.41
+ port: 1883
+ client_id: home-assistant-1
+
+
+
+# Enables the frontend frontend:
+
+
+
+switch:
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "Switch 1"
+   payload_on: "switch1_ON"
+   payload_off: "switch1_OFF"   
+
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "Switch 2"
+   payload_on: "switch2_ON"
+   payload_off: "switch2_OFF"   
+
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "Switch 3"
+   payload_on: "switch3_ON"
+   payload_off: "switch3_OFF"
+
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "Switch 4"
+   payload_on: "switch4_ON"
+   payload_off: "switch4_OFF"
+   
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "RED Color"
+   payload_on: "RED"
+   payload_off: "WHITE"
+   
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "GREEN Color"
+   payload_on: "GREEN"
+   payload_off: "WHITE" 
+   
+ - platform: mqtt
+   command_topic: "MQTT/switch" 
+   state_topic: "MQTT/switch"   
+   name: "BLUE Color"
+   payload_on: "BLUE"
+   payload_off: "WHITE"    
+   
+
+
+notify:
+ - name: MQTT
+   platform: pushbullet
+   api_key: o.YDNzhxRnWvJFGUM7MB8PUCnUuGO3BkEf
+   target: device/Sony C6902
+   message: "Device Status"
+    
+    
+automation:
+ - alias: Push
+   hide_entity: True
+   trigger:
+     platform: mqtt
+     name: "Status"
+     state_topic: "MQTT/switch"
+     payload_on: "switch1_ON"
+     #payload_off: "switch1_OFF"
+     entity_id: switch.switch_1
+      
+   action:
+     service: notify.MQTT
+     data_template:
+       title: "Device Status"
+       message: "Device is {{ states.switch.switch_1.state }}"
+        
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: 281
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+  platform: yr
+
+
+ifttt:
+ key: bvDbXSrlPICVuts2iIeGQ1
+
