@@ -1,4 +1,10 @@
+'''
+Author: Swapnasheel
+EE281 Project
 
+This script when started on Raspberry Pi, activates the MQTT services making it the Broker and waiting for client messages.
+
+'''
 import paho.mqtt.client as mqtt
 import datetime
 import os
