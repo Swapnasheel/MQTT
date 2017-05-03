@@ -1,0 +1,34 @@
+
+// update and upgrade your Pi
+
+sudo apt-get update
+sudo apt-get upgrade
+
+
+// get VNC server in your Pi (which will act as a server)
+
+sudo apt-get tightvncserver
+
+
+// setting up vnc server in Pi
+vncserver :1
+
+//setting up 8 digit password
+cisco123 (password)
+n
+
+
+//to make vnc run at startup
+
+sudo nano /etc/rc.local
+
+//before exit 0 ...enter :-
+su - pi -c '/user/bin/vncserver :1'
+
+//save and exit (^X and Y)
+
+sudo reboot
+
+
+// install vnc in client (computer)
+//login using Pi IP addrss and passwrd set in VNC

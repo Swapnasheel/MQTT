@@ -1,0 +1,25 @@
+Setting up DNS
+
+echo url="https://www.duckdns.org/update?domains=example2&token=abcdefg123123123123&ip=" | curl -k -o ~/duckdns/duck.log -K -
+
+Connect to your Pi using Putty, login with your account name (pi) and password. 
+
+1. mkdir duckdns
+
+2. cd duckdns
+
+3. vi duck.sh
+
+4. press i, copy text as shown in the DuckDNS instructions should be something like...   
+   then, press escape, then type :wq! and press enter
+
+5. chmod 700 duck.sh
+
+6. crontab -e, select the nano option
+paste this line at the bottom of the script */5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1
+
+7. ./duck.sh
+
+8. cat duck.log, should return OK
+
+9.sudo service cron start

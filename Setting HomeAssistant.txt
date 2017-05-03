@@ -1,0 +1,29 @@
+Home Assistant
+
+1. sudo apt-get update
+
+2. sudo apt-get upgrade 
+
+3. sudo pip3 install homeassistant
+
+4. To upgrade HA, if already installed used pip3 install --upgrade homeassistant
+
+If you want to run the dev branch of home assisant, use sudo pip3 install --upgrade git+git://github.com/balloob/home-assistant.git@dev
+
+To make HA start on startup automatically
+
+5. sudo nano /etc/init.d/hass-daemon, copy this script, change user to root
+
+6. sudo chmod +x /etc/init.d/hass-daemon
+
+7. sudo update-rc.d hass-daemon defaults
+
+8. sudo service hass-daemon install
+
+9. sudo reboot and HA should start working
+
+To restart Home Assistant (everytime you make a change to the config file or if something breaks) use the following 
+
+10. sudo service hass-daemon restart 
+
+The HA configuration files should be available in /var/opt/homeassistant

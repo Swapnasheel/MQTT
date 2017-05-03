@@ -1,0 +1,7 @@
+Commands to use in Pi terminal to check MQTT messages via Mosquitto
+
+Subcribe:- (goes on one terminal)
+mosquitto_sub -d -u username -P password -t dev/test
+
+Publish:- (goes on another terminal)
+mosquitto_pub -d -u username -P password -t dev/test -m "Hello world"
